@@ -74,4 +74,10 @@ public class FindPivotIndex{
         }
         return -1;
     }
+    
+    public static void main(String[] args){
+        FindPivotIndex test = new FindPivotIndex();
+        int[] testArray = {1, 7, 3, 6, 5, 6};
+        System.out.println(test.pivotIndex(testArray));
+    }
 }
