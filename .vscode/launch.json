@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - FindPivotIndex",
+            "request": "launch",
+            "mainClass": "FindPivotIndex",
+            "projectName": "CS Practice_1521144f"
+        }
+    ]
+}
