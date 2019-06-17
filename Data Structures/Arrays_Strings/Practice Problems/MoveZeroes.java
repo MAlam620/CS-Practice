@@ -1,58 +1,50 @@
+/**
+ * Given an array nums, write a function to move all 0's to the end of it while maintaining the relative order of the non-zero elements.
+
+Example:
+
+Input: [0,1,0,3,12]
+Output: [1,3,12,0,0]
+Note:
+
+You must do this in-place without making a copy of the array.
+Minimize the total number of operations.
+ */
+
 public class MoveZeroes
 {
+   /**
+    1). Create a variable called startIndex starting at 0.
+    2). Check if the value at this index in the array is 0. If it isn't, move the index and i up by one, and repeat 
+    this process until a 0 value is found.
+    3). Iterate through the array now and see if non-zero is found.
+    4). If non-zero found, switch the values at startIndex with i, assign startIndex to i, then go back to step 2.
+    */
+    
     /**
-     * 1). Create an index variable that references the last element of the given array.
-     * 2). If last element is already 0, loop backwards until a non-zero element is found, and then assign that index to this variable.
-     * 3). Using a for loop, iterate from the start of the array, until a 0 is found. If a 0 is found, switch the value at the current index
-     * with the index created in step 1, and decrement the end index by 1. Again, if this is non-zero, repeat step 2.
-     * 4). When the end index crosses with the for loop index, that means we have iterated over the entire array, so the algorithm should conclude.
+     * Time complexity is constant O(n), since the entire array is iterated over once only. Space Complexity is O(1),
+     * since no new data structure is created for this algorithm.
      */
     public void moveZeroes(int[] nums)
     {
-        int lastIndex = nums.length - 1;
+        int startIndex = 0;
 
-        if(nums[lastIndex] == 0)
+        for(int i = 0; i < nums.length; i++)
         {
-            for(int i = lastIndex - 1; i >= 0; i--)
+            if(nums[startIndex] != 0)
             {
-                if(nums[i] != 0)
+                startIndex++;
+                continue;
+            }
+            else
+            {
+                if(nums[i] != 0 && startIndex != i)
                 {
-                    lastIndex = i;
-                    break;
+                    nums[startIndex] = nums[i];
+                    nums[i] = 0;
+                    startIndex++;
                 }
             }
         }
-
-        for(int i = 0; i < lastIndex; i++)
-        {
-            if(nums[i] == 0)
-            {
-                nums[i] = nums[lastIndex];
-                nums[lastIndex] = 0;
-                lastIndex--;
-
-                if(nums[lastIndex] == 0)
-                {
-                    for(int j = lastIndex - 1; j >= 0; j--)
-                    {
-                        if(j == i)
-                        {
-                            return;
-                        }
-                        if(nums[j] != 0)
-                        {
-                            lastIndex = j;
-                            break;
-                        }
-                    }
-                }
-            }
-        }
-
-    }   
-
-    public static void main(String[] args)
-    {
-        System.out.println("Hello World!");
     }
 }
