@@ -2,6 +2,12 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - MergeSortedArrays",
+            "request": "launch",
+            "mainClass": "MergeSortedArrays"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - MoveZeroes",
             "request": "launch",
             "mainClass": "MoveZeroes"
