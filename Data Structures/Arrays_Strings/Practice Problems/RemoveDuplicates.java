@@ -47,6 +47,11 @@ public class RemoveDuplicates
      */
     public int removeDuplicates(int[] nums) 
     {
+        /**
+         * Time complexity is O(n), since entire input is iterated over once with a for loop.
+         * Space complexity is O(1), since only replacement of values within the original arrays happen.
+         * No new array is created.
+         */
         if(nums.length < 1)
         {
             return 0;
