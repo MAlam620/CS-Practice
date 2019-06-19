@@ -20,40 +20,48 @@ Note:
 public class ShortestContinuousSubarray
 {
     /**
-     1). Create a copy of the input array
-     2). Sort this copy.
-     3). Now loop and compare the copy and the original. You can determine the left and righmost elements where mismatches occur. 
-     The subarray between these indices is the subarry.
+     1). Create a variable to keep track of the maximum value in the array.
+     2). Iterate and see if current value you're on is less than the maximum. If so, this means at this index,
+     the array is out of order. Use a 'right' index variable to keep track of where this maximum is located.
+     3). Now do this in reverse to find the minimum value. 
+     4). This process gives you the bounds on the subarray to be sorted. The return is right - left + 1.
      */
 
      /**
-        Time Complexity: Sorting take O(n log n) and the for loop adds to the O(n). Since O(n log n) is the dominant term,
-        simplify to O(n log n).
+        Time Complexity: Sorting take O(2n) since we loop over the input twice, which is simplified to O(n)
 
-        Space Complexity: You need to create a copy of the original, so O(n). 
+        Space Complexity: O(1), since no new data structure needed to be created, just variable assignments. 
       */
     public int findUnsortedSubarray(int[] nums) 
     {
-        int[] snums = nums.clone();
-        Arrays.sort(snums);
-        int start = nums.length;
-        int end = 0;
-        for (int i = 0; i < nums.length; i++) 
+        int maximum = nums[0];
+        int minimum = nums[nums.length - 1];
+        int left = -1;
+        int right = -1;
+
+        for(int i = 0; i < nums.length; i++)
         {
-            if (snums[i] != nums[i]) {
-                start = Math.min(start, i);
-                end = Math.max(end, i);
+            maximum = Math.max(maximum, nums[i]);
+            if(nums[i] < maximum)
+            {
+                right = i;
             }
         }
 
-        if((end - start) > 0)
+        for(int i = nums.length - 1; i >= 0; i--)
         {
-            return (end - start + 1);
+            minimum = Math.min(minimum, nums[i]);
+            if(nums[i] > minimum)
+            {
+                left = i;
+            }
         }
-        else
+
+        if(right == -1)
         {
             return 0;
         }
+        return right - left + 1;
 
     }
 
