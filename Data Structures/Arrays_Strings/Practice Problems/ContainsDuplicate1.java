@@ -20,8 +20,8 @@ Output: true
 
 
  */
-
-public class ContainsDuplicate
+import java.util.Arrays;
+public class ContainsDuplicate1
 {
     /**
         1). Sort the array in ascending order. 

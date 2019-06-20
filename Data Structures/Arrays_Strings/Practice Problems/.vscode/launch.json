@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - MaximumSubarray",
+            "request": "launch",
+            "mainClass": "MaximumSubarray",
+            "projectName": "Practice Problems_66ec0700"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - ShortestUnsortedSubarray",
             "request": "launch",
             "mainClass": "ShortestUnsortedSubarray",
