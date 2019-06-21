@@ -20,9 +20,7 @@ Output: true
 
 
  */
-import java.util.Arrays;
-public class ContainsDuplicate1
-{
+
     /**
         1). Sort the array in ascending order. 
         2). Iterate through the array, checking the previous value with the one you're on. If they're the same, duplicate exists, so return true.
@@ -34,6 +32,9 @@ public class ContainsDuplicate1
 
         Space Complexit: O(1), since we didn't create a new data structure. 
       */
+import java.util.Arrays;
+public class ContainsDuplicate1
+{
     public boolean sortMethod(int[] nums) 
     {
         Arrays.sort(nums);
