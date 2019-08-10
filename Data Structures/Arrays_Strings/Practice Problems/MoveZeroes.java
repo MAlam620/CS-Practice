@@ -17,16 +17,16 @@ public class MoveZeroes
     1). Create a variable called startIndex starting at 0.
     2). Check if the value at this index in the array is 0. If it isn't, move the index and i up by one, and repeat 
     this process until a 0 value is found.
-    3). Iterate through the array now and see if non-zero is found.
-    4). If non-zero found, switch the values at startIndex with i, assign startIndex to i, then go back to step 2.
+    3). If non-zero found, switch the values at startIndex with i, assign startIndex to i, then go back to step 2.
     */
     
     /**
      * Time complexity is constant O(n), since the entire array is iterated over once only. Space Complexity is O(1),
      * since no new data structure is created for this algorithm.
      */
-    public void moveZeroes(int[] nums)
+    public static int[] moveZeroes(int[] nums)
     {
+        //[0,1]
         int startIndex = 0;
 
         for(int i = 0; i < nums.length; i++)
@@ -38,13 +38,23 @@ public class MoveZeroes
             }
             else
             {
-                if(nums[i] != 0 && startIndex != i)
+                if(nums[i] != 0)
                 {
                     nums[startIndex] = nums[i];
                     nums[i] = 0;
                     startIndex++;
                 }
             }
+        }
+
+        return nums;
+    }
+    public static void main(String[] args) {
+        int[] myarray = {0, 1};
+        myarray = moveZeroes(myarray);
+        for(int i = 0; i < myarray.length; i++)
+        {
+            System.out.println(myarray[i]);
         }
     }
 }

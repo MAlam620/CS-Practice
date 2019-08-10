@@ -46,6 +46,7 @@ public class ShortestContinuousSubarray
             {
                 right = i;
             }
+            System.out.println(right);
         }
 
         for(int i = nums.length - 1; i >= 0; i--)
@@ -63,6 +64,15 @@ public class ShortestContinuousSubarray
         }
         return right - left + 1;
 
+    }
+
+    public static void main(String[] args)
+    {
+        ShortestContinuousSubarray test = new ShortestContinuousSubarray();
+        int[] testArray = {1,5,4,3,2,7};
+
+        int result = test.findUnsortedSubarray(testArray);
+        System.out.println(result);
     }
 
 }
