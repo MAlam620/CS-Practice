@@ -10,14 +10,11 @@ package com.LinkedList;
  */
 
 /**
- * You want to iterate by keeping 3 nodes in sequential order, starting with the head of the list. You simply make
- * previous, current, and last nodes that occur in that order. Make current.next = previous. Now move the nodes right one,
- * by making previous = current, current = last, and last = last.next. Make a check in the loop to see if last.next = null.
- * This means you've reached the tail, so now just make last point to your current.
+ *
  */
 public class ReverseList
 {
-    public static ListNode reverseList(ListNode head)
+    public static ListNode reverseBetween(ListNode head, int m, int n)
     {
         if(head == null)
         {
@@ -27,31 +24,60 @@ public class ReverseList
         {
             return head;
         }
-        else if(head.next.next == null)
-        {
-            ListNode temp = head.next;
-            head.next = null;
-            temp.next = head;
-            return temp;
-        }
 
-        ListNode previous = head;
-        ListNode current = previous.next;
-        ListNode last = current.next;
-        previous.next = null; //Head is now the tail, which points to null.
+        ListNode atM = head;
+        ListNode beforeM = null;
 
-        while(last != null)
+        for(int i = 1; i < m; i++) //We have the node where m is now.
         {
-            current.next = previous;
-            if(last.next == null) //Reached the tail, the new head of the list.
+            if(i == m - 1)
             {
-                last.next = current;
-                return last;
+                beforeM = atM;
             }
-            previous = current;
-            current = last;
-            last = last.next;
+            atM = atM.next;
         }
-        return last;
+        ListNode current = atM;
+        ListNode next = current.next;
+        for(int i = m; i < n; i++)
+        {
+            
+        }
+
+        return atM;
+    }
+
+    public static void main(String[] args)
+    {
+        ListNode l1 = new ListNode(1);
+        ListNode l2 = new ListNode(2);
+        l1.next = l2;
+        ListNode l3 = new ListNode(3);
+        l2.next = l3;
+        ListNode l4 = new ListNode(4);
+        l3.next = l4;
+        ListNode l5 = new ListNode(5);
+        l4.next = l5;
+        ListNode l6 = new ListNode(6);
+        l5.next = l6;
+        ListNode l7 = new ListNode(7);
+        l6.next = l7;
+        ListNode l8 = new ListNode(8);
+        l7.next = l8;
+        ListNode l9 = new ListNode(9);
+        l8.next = l9;
+        ListNode l10 = new ListNode(10);
+        l9.next = l10;
+
+        l1 = reverseBetween(l1, 2, 6);
+        System.out.println(l1.val);
+//       while(l1 != null)
+//       {
+//           System.out.print(l1.val + "--> ");
+//           l1 = l1.next;
+//           if(l1 == null)
+//          {
+//               System.out.print("null");
+//           }
+//       }
     }
 }
