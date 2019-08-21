@@ -40,10 +40,10 @@ public class ReverseList
         ListNode next = current.next;
         for(int i = m; i < n; i++)
         {
-            
+            current = current.next;
         }
 
-        return atM;
+        return current;
     }
 
     public static void main(String[] args)
