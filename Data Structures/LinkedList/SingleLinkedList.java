@@ -1,119 +1,132 @@
 package com.LinkedList;
 
-public class SingleLinkedList
+class SingleLinkedList
 {
-    Node head = null;
-    Node tail = null;
-    int length = 0;
-
-    SingleLinkedList(int value)
+    class Node
     {
-        Node newNode = new Node(value);
-        this.head = newNode;
-        this.tail = newNode;
-        this.tail.next = null;
-        this.length = 1;
-    }
-
-    public void append(int value)
-    {
-        Node newNode = new Node(value);
-        newNode.next = null;
-        this.tail.next = newNode;
-        this.tail = newNode;
-        length++;
-    }
-
-    public void prepend(int value)
-    {
-        Node newNode = new Node(value);
-        newNode.next = this.head;
-        this.head = newNode;
-        length++;
-    }
-
-    public void insert(int index, int value)
-    {
-        //Check if user is actually inserting value in tail or head.
-        if(value >= this.length)
+        int val;
+        Node next;
+        public Node(int val)
         {
-            this.append(value);
+            this.val = val;
         }
-        else if(index == 0)
-        {
-            prepend(value);
-        }
-        else
-        {
-            Node newNode = new Node(value);
+    }
 
-            Node previousNode = traverseToIndex(index - 1); //Always start iterating with the head.
-            Node nextNode = traverseToIndex(index); //This node is the current node at the index. Shifted right now.
+    Node head;
+    int size;
 
-            newNode.next = nextNode; //The new node points to node at current index now
-            previousNode.next = newNode; //The previous node points to new node, completing the chain
+    /** Initialize your data structure here. */
+    public MyLinkedList()
+    {
+        head = null;
+        size = 0;
+    }
+
+    /** Get the value of the index-th node in the linked list. If the index is invalid, return -1. */
+    public int get(int index)
+    {
+        if (index < 0 || index >= size)
+        {
+            return -1;
         }
 
-        length++;
+        Node cur = head;
+        for (int i = 0; i < index; i++)
+        {
+            cur = cur.next;
+        }
+
+        return cur.val;
     }
 
-    public void remove(int index)
+    /** Add a node of value val before the first element of the linked list. After the insertion, the new node will be the first node of the linked list. */
+    public void addAtHead(int val)
     {
-        if(this.length <= 1) //Can't delete if Linked List is empty or only one node
+        Node previous = head;
+        Node newNode = new Node(val);
+        head = newNode;
+        head.next = previous;
+        size++;
+    }
+
+    /** Append a node of value val to the last element of the linked list. */
+    public void addAtTail(int val)
+    {
+        if (head == null)
+        {
+            head = new Node(val);
+            size++;
+            return;
+        }
+        Node cur = head;
+        while (cur.next != null)
+        {
+            cur = cur.next;
+        }
+        cur.next = new Node(val);
+    }
+
+    /** Add a node of value val before the index-th node in the linked list. If index equals to the length of linked list, the node will be appended to the end of linked list. If index is greater than the length, the node will not be inserted. */
+    public void addAtIndex(int index, int val)
+    {
+        if (index < 0)
+        {
+            addAtHead(val);
+        }
+
+        else if (index == size)
+        {
+            addAtTail(val);
+        }
+        else if (index > size)
         {
             return;
         }
-        Node node = traverseToIndex(index);
-
-        if(node == this.head)
-        {
-            node.next = head;
-            node.next = null;
-        }
-
-        else if(node == tail)
-        {
-            Node newTail = traverseToIndex(index - 1);
-            newTail = this.tail;
-            newTail.next = null;
-        }
-
-        else if(node.next == tail)
-        {
-            node = this.tail;
-            node.next = null;
-        }
-
         else
         {
-            Node previousNode = traverseToIndex(index - 1);
-            previousNode.next = node.next;
-            node.next = null;
+            size++;
+            Node temp = new Node(val);
+            if (index == 0)
+            { // if add to head
+
+                head = temp;
+            }
+            else
+            {
+                Node current = head;
+                Node previous = null;
+                for (int i = 0; i < index; i++)
+                {
+                    previous = current;
+                    current = current.next;
+                }
+                previous.next = temp;
+                temp.next = current;
+            }
         }
-        this.length --;
     }
 
-    public Node traverseToIndex(int index)
+    /** Delete the index-th node in the linked list, if the index is valid. */
+    public void deleteAtIndex(int index)
     {
-        Node returnNode = head;
-
-        for(int i = 1; i <= index; i++)
+        if (index < 0 || index >= size)
         {
-            returnNode = returnNode.next;
+            return;
         }
-
-        return returnNode;
-    }
-
-
-    public void printList()
-    {
-        Node currentNode = this.head;
-
-        while(currentNode != null)
+        size--;
+        if (index == 0)
+        { // if delete the head
+            head = head.next;
+            return;
+        }
+        Node current = head;
+        Node previous = null;
+        for (int i = 0; i < index; i++)
         {
-            System.out.println(currentNode.value);
-            currentNode = currentNode.next;
+            previous = current;
+            current = current.next;
         }
+        previous.next = current.next;
     }
 }
+
