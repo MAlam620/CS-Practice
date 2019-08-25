@@ -21,14 +21,12 @@ class MyQueue {
             top = newNode;
             bottom = newNode;
             length++;
-            System.out.println("Pushed " + bottom.val + " to the bottom.");
         }
         else
         {
             bottom.next = newNode;
             bottom = newNode;
             length++;
-            System.out.println("Pushed " + bottom.val + " to the bottom.");
         }
     }
 

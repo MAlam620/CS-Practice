@@ -2,80 +2,45 @@ package com.practice;
 
 public class QueueUsingStack
 {
-    MyStack stack;
+    MyStack regularStack;
+    MyStack queueStack;
 
     public QueueUsingStack()
     {
-        stack = new MyStack();
+        regularStack = new MyStack();
+        queueStack = new MyStack();
     }
 
     public void push(int x)
     {
-        stack.push(x);
+        int size = queueStack.length;
+        for(int i = 0; i < size; i++)
+        {
+            regularStack.push(queueStack.pop());
+        }
+        regularStack.push(x);
+
+        size = regularStack.length;
+
+        for(int i = 0; i < size; i++)
+        {
+            queueStack.push(regularStack.pop());
+        }
     }
 
     public int pop()
     {
-        if(stack.length == 1)
-        {
-            return stack.pop();
-        }
-
-        ListNode first = new ListNode(stack.pop());
-        ListNode second = new ListNode(stack.pop());
-
-        while(!stack.empty())
-        {
-            ListNode last = new ListNode(stack.pop());
-            second.next = first;
-            first = second;
-            second = last;
-        }
-        second.next = first; //Reversed order of a stack.
-
-        int returnValue = second.val;
-        second = second.next;
-
-        while(second != null)
-        {
-            stack.push(second.val);
-            second = second.next;
-        }
-        return returnValue;
+        return queueStack.pop();
     }
 
     public int peek()
     {
-        if(stack.length == 1)
-        {
-            return stack.top();
-        }
-
-        ListNode first = new ListNode(stack.pop());
-        ListNode second = new ListNode(stack.pop());
-
-        while(!stack.empty())
-        {
-            ListNode last = new ListNode(stack.pop());
-            second.next = first;
-            first = second;
-            second = last;
-        }
-        second.next = first; //Reversed order of a stack.
-
-        int returnValue = second.val;
-
-        while(second != null)
-        {
-            stack.push(second.val);
-            second = second.next;
-        }
-        return returnValue;
+        return queueStack.top();
     }
 
     public boolean empty()
     {
-        if(stack.empty())
+        if(queueStack.empty())
         {
             return true;
         }
@@ -88,6 +53,9 @@ public class QueueUsingStack
     public static void main(String[] args)
     {
         QueueUsingStack test = new QueueUsingStack();
+        test.push(1);
+        test.push(2);
+        System.out.println(test.pop());
 
     }
 
