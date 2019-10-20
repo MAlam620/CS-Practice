@@ -37,6 +37,7 @@ public class ContainsDuplicate1
 {
     public boolean sortMethod(int[] nums) 
     {
+        HashMap
         Arrays.sort(nums);
 
         if(nums.length < 2)
