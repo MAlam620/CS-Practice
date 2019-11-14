@@ -1,4 +1,8 @@
-public Node mergeTwoLists(Node l1, Node l2)
+package com.practice;
+
+public class MergeTwoSortedLists
+{
+    public Node mergeTwoLists(Node l1, Node l2)
     {
         if(l1 == null)
         {
@@ -24,3 +28,6 @@ public Node mergeTwoLists(Node l1, Node l2)
             return head;
         }
     }
+}
+
+
