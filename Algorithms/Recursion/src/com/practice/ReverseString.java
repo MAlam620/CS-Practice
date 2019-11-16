@@ -1,5 +1,5 @@
-package com.company;
-import java.lang.*;
+package com.practice;
+
 public class ReverseString
 {
     public static void reverseString(String str)
@@ -25,11 +25,6 @@ public class ReverseString
         {
             return recursionString(str.substring(1, str.length())) + str.charAt(0);
         }
-    }
-
-    public static void main(String[] args)
-    {
-        reverseString("Hello World!");
     }
 
 }
