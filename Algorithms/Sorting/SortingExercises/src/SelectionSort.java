@@ -4,6 +4,8 @@
  * array, and swap the position of the first element with the position of the minimal value.
  * You do this over and over again through the array, and get the array sorted. Again, this is
  * a nested loop, so time complexity is O(n^2).
+ *
+ * Only for education.
  */
 
 import java.lang.*;

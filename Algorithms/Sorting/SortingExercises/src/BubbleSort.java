@@ -5,6 +5,8 @@
  * and repeat, ignoring the last item since it's already sorted. Essentially, you compare adjacent values,
  * and swap if necessary. This is a nested loop, so
  * the time complexity is O(n^2).
+ *
+ * Almost never use, for education only.
  */
 
 public class BubbleSort

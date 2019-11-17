@@ -3,6 +3,8 @@ The strategy is to divide your array into half until you get to an array of size
  The array of size 1 is already sorted. You will have two arrays, with one being
  right and one being left of size one this way. Now, combine these into one in sorted
  fashion. Do this until all subarrays you created by halving are combined in this fashion.
+
+ Guarantees O(n log(n)) time complexity for all cases, but O(n) space complexity.
  */
 
 public class MergeSort {
